@@ -87,28 +87,16 @@
 
 
 
-<meta name="description" content="Mac下erlang的安装brew install erlang
-输入erl，如果看到类似于Eshell V5.10.1  (abort with ^G)1&amp;gt;的话，就表示Erlang安装成功。这东西叫做Erlang的Shell。
-新建一个helloworld.erlvim helloworld.erl
-输入以下内容，经典的erlang的helloworld
--module(helloworl">
+<meta name="description" content="Mac下erlang的安装brew install erlang">
 <meta property="og:type" content="article">
 <meta property="og:title" content="hello world erlang">
 <meta property="og:url" content="http://yoursite.com/2017/03/10/hello-world-erlang/index.html">
 <meta property="og:site_name" content="xexexe">
-<meta property="og:description" content="Mac下erlang的安装brew install erlang
-输入erl，如果看到类似于Eshell V5.10.1  (abort with ^G)1&amp;gt;的话，就表示Erlang安装成功。这东西叫做Erlang的Shell。
-新建一个helloworld.erlvim helloworld.erl
-输入以下内容，经典的erlang的helloworld
--module(helloworl">
-<meta property="og:updated_time" content="2017-03-10T13:16:52.000Z">
+<meta property="og:description" content="Mac下erlang的安装brew install erlang">
+<meta property="og:updated_time" content="2017-03-11T04:28:16.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hello world erlang">
-<meta name="twitter:description" content="Mac下erlang的安装brew install erlang
-输入erl，如果看到类似于Eshell V5.10.1  (abort with ^G)1&amp;gt;的话，就表示Erlang安装成功。这东西叫做Erlang的Shell。
-新建一个helloworld.erlvim helloworld.erl
-输入以下内容，经典的erlang的helloworld
--module(helloworl">
+<meta name="twitter:description" content="Mac下erlang的安装brew install erlang">
 
 
 
@@ -361,19 +349,18 @@
 
       
         <p>Mac下erlang的安装<br>brew install erlang</p>
+<a id="more"></a>
 <p>输入erl，如果看到类似于<br>Eshell V5.10.1  (abort with ^G)<br>1&gt;<br>的话，就表示Erlang安装成功。这东西叫做Erlang的Shell。</p>
 <p>新建一个helloworld.erl<br>vim helloworld.erl</p>
 <p>输入以下内容，经典的erlang的helloworld</p>
-<p>-module(helloworld).<br>-export([hw/0]).</p>
-<p>hw() -&gt; io:format(“Hello World! ~n”).</p>
+<figure class="highlight erlang"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">-module</span><span class="params">(helloworld)</span>.</div><div class="line"><span class="keyword">-export</span><span class="params">([hw/<span class="number">0</span>])</span>.</div><div class="line"></div><div class="line"><span class="function"><span class="title">hw</span><span class="params">()</span> -&gt;</span> io:format(<span class="string">"Hello World! ~n"</span>).</div></pre></td></tr></table></figure>
 <p>:wq。保存，退出。</p>
 <p>然后在该目录下，输入以下命令：</p>
-<p>1&gt; c(helloworld).<br>{ok,helloworld}<br>2&gt; helloworld:hw().<br>Hello World!<br>ok</p>
+<figure class="highlight erlang"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="number">1</span>&gt; c(helloworld).</div><div class="line">&#123;ok,helloworld&#125;</div><div class="line"><span class="number">2</span>&gt; helloworld:hw().</div><div class="line">Hello World!</div><div class="line">ok</div></pre></td></tr></table></figure>
 <p>Hello World完成！</p>
 <p>由于参考了网上的教程，helloworld出来还算比较容易。</p>
-<p>% 首先，Erlang的注释符是百分号哦<br>-module(helloworld).<br>% -module是必要的，这可不是Bash或Python，上来就可以Echo或Print<br>% 然后，helloworld 必须与文件名相同（除了不用加.erl）<br>% 然后，行末的句点是必须的，虽然好不显眼</p>
-<p>-export([hw/0]).<br>% -export也是必须的，这是用来说明哪些函数可以在外部被调用<br>% 括号中必须是一个列表，换言之，加方括号<br>% hw是函数名，斜杠后面是参数的数目，两者总是组合指明一个函数。<br>% 参数数目不同的，即使同名，也是两个不同的函数<br>% 还是记得句尾要加点</p>
-<p>hw() -&gt; io:format(“Hello World! ~n”).<br>% 这个是函数了<br>% 函数名前面不用任何修饰，类似于其他语言中的Fun，def之类在这里是不必要的<br>% 函数名是一个“原子”，换言之就是一个以小写字母开头的单词，可后继大小写字母下划线和@号<br>% 或是你足够蛋疼的话，可以用单引号括起来的任意东西，比方说 ‘*&amp;^%hw2’<br>% 还有，不要拿fun当函数名，这个词另有用途<br>% 函数名后面加括号，如果有参数，写在括号中<br>% 括号后是 -&gt; 这不是C语言中的指针，而是表示后面是函数的内容了<br>% io:format可以当print，其实就是io模块里的format函数<br>% 看清楚模块名和函数名之间是冒号，别弄成其他语言中的点<br>% 双引号中是字符串，Erlang中的字符串实质上是数组<br>% ~n是换行，用波浪线转义<br>% 最后还是别忘记了是句点<br>这个erl文件的坑说完了，然后是Erlang Shell中的。<br>想用erl xxxxx.erl来执行是徒劳的，这货不是sh也不是python也不是pl，这么做你会 进入Erlang Shell。<br>然后先是要c(helloworld).编译，记得不要忘记句点。然后同一个目录下就会出现一个 同名的beam文件。<br>然后键入helloworld:hw().，回车没反应？又忘记句点了，补上，Hello World终于蹦 出来了。</p>
+<figure class="highlight erlang"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="comment">% 首先，Erlang的注释符是百分号哦</span></div><div class="line"><span class="keyword">-module</span><span class="params">(helloworld)</span>.  </div><div class="line"><span class="comment">% -module是必要的，这可不是Bash或Python，上来就可以Echo或Print</span></div><div class="line"><span class="comment">% 然后，helloworld 必须与文件名相同（除了不用加.erl）</span></div><div class="line"><span class="comment">% 然后，行末的句点是必须的，虽然好不显眼</span></div><div class="line"></div><div class="line"><span class="keyword">-export</span><span class="params">([hw/<span class="number">0</span>])</span>.</div><div class="line"><span class="comment">% -export也是必须的，这是用来说明哪些函数可以在外部被调用</span></div><div class="line"><span class="comment">% 括号中必须是一个列表，换言之，加方括号</span></div><div class="line"><span class="comment">% hw是函数名，斜杠后面是参数的数目，两者总是组合指明一个函数。</span></div><div class="line"><span class="comment">% 参数数目不同的，即使同名，也是两个不同的函数</span></div><div class="line"><span class="comment">% 还是记得句尾要加点</span></div><div class="line"></div><div class="line"><span class="function"><span class="title">hw</span><span class="params">()</span> -&gt;</span> io:format(<span class="string">"Hello World! ~n"</span>). </div><div class="line"><span class="comment">% 这个是函数了</span></div><div class="line"><span class="comment">% 函数名前面不用任何修饰，类似于其他语言中的Fun，def之类在这里是不必要的</span></div><div class="line"><span class="comment">% 函数名是一个“原子”，换言之就是一个以小写字母开头的单词，可后继大小写字母下划线和@号</span></div><div class="line"><span class="comment">% 或是你足够蛋疼的话，可以用单引号括起来的任意东西，比方说 '*&amp;^%hw2'</span></div><div class="line"><span class="comment">% 还有，不要拿fun当函数名，这个词另有用途</span></div><div class="line"><span class="comment">% 函数名后面加括号，如果有参数，写在括号中</span></div><div class="line"><span class="comment">% 括号后是 -&gt; 这不是C语言中的指针，而是表示后面是函数的内容了</span></div><div class="line"><span class="comment">% io:format可以当print，其实就是io模块里的format函数</span></div><div class="line"><span class="comment">% 看清楚模块名和函数名之间是冒号，别弄成其他语言中的点</span></div><div class="line"><span class="comment">% 双引号中是字符串，Erlang中的字符串实质上是数组</span></div><div class="line"><span class="comment">% ~n是换行，用波浪线转义</span></div><div class="line"><span class="comment">% 最后还是别忘记了是句点</span></div></pre></td></tr></table></figure>
+<p>这个erl文件的坑说完了，然后是Erlang Shell中的。<br>想用erl xxxxx.erl来执行是徒劳的，这货不是sh也不是python也不是pl，这么做你会 进入Erlang Shell。<br>然后先是要c(helloworld).编译，记得不要忘记句点。然后同一个目录下就会出现一个 同名的beam文件。<br>然后键入helloworld:hw().，回车没反应？又忘记句点了，补上，Hello World终于蹦 出来了。</p>
 <p>参考：<a href="http://cndenis.iteye.com/blog/1828918" target="_blank" rel="external">http://cndenis.iteye.com/blog/1828918</a></p>
 
       
