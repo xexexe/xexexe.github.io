@@ -87,16 +87,19 @@
 
 
 
-<meta name="description" content="有时候，单色图片添加，对于程序包控制，不用放图片到资源包里面，而且，灵活性也更高，就是生成时需要消耗资源。">
+<meta name="description" content="把标题看成，生成黄色图片的童学可以出去了。
+有时候，单色图片添加，对于程序包控制，不用放图片到资源包里面，而且，灵活性也更高，就是生成时需要消耗资源。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS下，代码生成单色图片">
 <meta property="og:url" content="http://yoursite.com/2017/03/07/new-image-by-color-in-ios/index.html">
 <meta property="og:site_name" content="xexexe">
-<meta property="og:description" content="有时候，单色图片添加，对于程序包控制，不用放图片到资源包里面，而且，灵活性也更高，就是生成时需要消耗资源。">
-<meta property="og:updated_time" content="2017-03-11T02:53:04.000Z">
+<meta property="og:description" content="把标题看成，生成黄色图片的童学可以出去了。
+有时候，单色图片添加，对于程序包控制，不用放图片到资源包里面，而且，灵活性也更高，就是生成时需要消耗资源。">
+<meta property="og:updated_time" content="2017-03-16T15:05:33.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS下，代码生成单色图片">
-<meta name="twitter:description" content="有时候，单色图片添加，对于程序包控制，不用放图片到资源包里面，而且，灵活性也更高，就是生成时需要消耗资源。">
+<meta name="twitter:description" content="把标题看成，生成黄色图片的童学可以出去了。
+有时候，单色图片添加，对于程序包控制，不用放图片到资源包里面，而且，灵活性也更高，就是生成时需要消耗资源。">
 
 
 
@@ -348,7 +351,8 @@
       
 
       
-        <p>有时候，单色图片添加，对于程序包控制，不用放图片到资源包里面，而且，灵活性也更高，就是生成时需要消耗资源。</p>
+        <p>把标题看成，生成黄色图片的童学可以出去了。</p>
+<p>有时候，单色图片添加，对于程序包控制，不用放图片到资源包里面，而且，灵活性也更高，就是生成时需要消耗资源。</p>
 <a id="more"></a>
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">- (<span class="built_in">UIImage</span> *)imageWithColor:(<span class="built_in">UIColor</span> *)color size:(<span class="built_in">CGSize</span>)size &#123;</div><div class="line">	<span class="comment">//生成图片大小size.width*size.height</span></div><div class="line">    <span class="built_in">CGRect</span> rect = <span class="built_in">CGRectMake</span>(<span class="number">0</span>, <span class="number">0</span>, size.width, size.height);</div><div class="line">	<span class="comment">//创建一个基于位图的上下文（context）</span></div><div class="line">    <span class="built_in">UIGraphicsBeginImageContext</span>(rect.size);</div><div class="line">	<span class="comment">//获取当前context</span></div><div class="line">    <span class="built_in">CGContextRef</span> context = <span class="built_in">UIGraphicsGetCurrentContext</span>();</div><div class="line">	<span class="comment">//设置context的填充颜色</span></div><div class="line">    <span class="built_in">CGContextSetFillColorWithColor</span>(context, [color <span class="built_in">CGColor</span>]);</div><div class="line">	<span class="comment">//设置context的填充范围</span></div><div class="line">    <span class="built_in">CGContextFillRect</span>(context, rect);</div><div class="line">	<span class="comment">//从当前上下文中获取一个UIImage对象</span></div><div class="line">    <span class="built_in">UIImage</span> *image = <span class="built_in">UIGraphicsGetImageFromCurrentImageContext</span>();</div><div class="line">	<span class="comment">//结束上下文context</span></div><div class="line">    <span class="built_in">UIGraphicsEndImageContext</span>();</div><div class="line">	<span class="comment">//返回Image对象</span></div><div class="line">    <span class="keyword">return</span> image;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
@@ -464,7 +468,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-count">28</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -473,7 +477,7 @@
           
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>
@@ -482,7 +486,7 @@
           
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-count">25</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
