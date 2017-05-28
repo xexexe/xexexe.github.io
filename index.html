@@ -252,6 +252,161 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/27/Building-FreeType-for-Mac-OS-and-IOS/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Mark Ran">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/uploads/hehe.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="xexexe">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="xexexe" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/05/27/Building-FreeType-for-Mac-OS-and-IOS/" itemprop="url">
+                  Building FreeType for Mac OS and IOS
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-27T14:37:01+08:00">
+                2017-05-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/FreeType/" itemprop="url" rel="index">
+                    <span itemprop="name">FreeType</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>折腾了一下FreeType，感觉很是强大，一个功能很丰富的开源库。下载了源码，编译为静态库花了点功夫。</p>
+<p>我的本地环境<br>OSX 10.12.5<br>XCode 8.3.2</p>
+<p>Starting point<br>Freetype 2.8<br>Extract archive, and in Terminal: cd freetype-2.8</p>
+<p>OSX<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">./configure CFLAGS=&quot;-arch i386&quot; --without-zlib --without-png --without-bzip2</div><div class="line">make clean</div><div class="line">make</div><div class="line">cp objs/.libs/libfreetype.a libfreetype-i386.a</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">./configure CFLAGS=&quot;-arch x86_64&quot; --without-zlib --without-png --without-bzip2</div><div class="line">make clean</div><div class="line">make</div><div class="line">cp objs/.libs/libfreetype.a libfreetype-x86_64.a</div></pre></td></tr></table></figure>
+<p>然后将两个库合并为一个：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">lipo -c libfreetype-i386.a libfreetype-x86_64.a -o libfreetype.a</div></pre></td></tr></table></figure></p>
+<p>IOS<br>模拟器使用OSX相同的库<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">./configure CFLAGS=&quot;-arch i386&quot; --without-zlib --without-png --without-bzip2</div><div class="line">make clean</div><div class="line">make</div><div class="line">cp objs/.libs/libfreetype.a libfreetype-i386.a</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">./configure CFLAGS=&quot;-arch x86_64&quot; --without-zlib --without-png --without-bzip2</div><div class="line">make clean</div><div class="line">make</div><div class="line">cp objs/.libs/libfreetype.a libfreetype-x86_64.a</div></pre></td></tr></table></figure>
+<p>真机下的编译，有点复杂，arm7和arm64。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">./configure --without-zlib --without-png --without-bzip2 &apos;--prefix=/usr/local/iPhone&apos; &apos;--host=arm-apple-darwin&apos; &apos;--enable-static=yes&apos; &apos;--enable-shared=no&apos; &apos;CC=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang&apos; &apos;CFLAGS=-arch armv7 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -O2 -Wreturn-type -Wunused-variable -fmessage-length=0 -fvisibility=hidden -miphoneos-version-min=8.0 -I/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/usr/include/libxml2/ -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/&apos; &apos;AR=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ar&apos; &apos;LDFLAGS=-arch armv7 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/ -miphoneos-version-min=8.0&apos;</div><div class="line">make clean</div><div class="line">make</div><div class="line">cp objs/.libs/libfreetype.a libfreetype-armv7.a</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">./configure --without-zlib --without-png --without-bzip2 &apos;--prefix=/usr/local/iPhone&apos; &apos;--host=arm-apple-darwin&apos; &apos;--enable-static=yes&apos; &apos;--enable-shared=no&apos; &apos;CC=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang&apos; &apos;CFLAGS=-arch arm64 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -O2 -Wreturn-type -Wunused-variable -fmessage-length=0 -fvisibility=hidden -miphoneos-version-min=8.0 -I/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/usr/include/libxml2/ -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/&apos; &apos;AR=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ar&apos; &apos;LDFLAGS=-arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/ -miphoneos-version-min=8.0&apos;</div><div class="line">make clean</div><div class="line">make</div><div class="line">cp objs/.libs/libfreetype.a libfreetype-arm64.a</div></pre></td></tr></table></figure>
+<p>将这些所有的库合并在一起<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">lipo -c libfreetype-i386.a libfreetype-x86_64.a libfreetype-armv7.a libfreetype-arm64.a -o libfreetype.a</div></pre></td></tr></table></figure></p>
+<p>在arm7和arm64上的编译我遇到的坑，是ar的位置改变了。<br><a href="https://stackoverflow.com/questions/32638016/ar-is-missing-after-upgrade-to-xcode-7/32638880#32638880" target="_blank" rel="external">https://stackoverflow.com/questions/32638016/ar-is-missing-after-upgrade-to-xcode-7/32638880#32638880</a></p>
+<p>参考：<br><a href="https://github.com/arielm/Freetype/wiki/Building-instructions" target="_blank" rel="external">https://github.com/arielm/Freetype/wiki/Building-instructions</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/19/collect-web-url/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -304,6 +459,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/collect/" itemprop="url" rel="index">
+                    <span itemprop="name">collect</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -1524,149 +1701,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/07/clean-git-local/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Mark Ran">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/uploads/hehe.png">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="xexexe">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="xexexe" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/04/07/clean-git-local/" itemprop="url">
-                  clean git local
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-07T09:43:39+08:00">
-                2017-04-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Terminal/" itemprop="url" rel="index">
-                    <span itemprop="name">Terminal</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>如果你有的修改以及加入暂存区的话<br>那么<br>git reset –hard<br>git clean -xdf </p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1714,7 +1748,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">43</span>
+                <span class="site-state-item-count">44</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1723,7 +1757,7 @@
           
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>
@@ -1732,7 +1766,7 @@
           
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">50</span>
+                <span class="site-state-item-count">53</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
